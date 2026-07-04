@@ -16,7 +16,10 @@ interface WeekViewProps {
 
 // Helpers for dates
 const getWeekDays = (referenceDateStr: string) => {
-  const refDate = new Date(referenceDateStr);
+  let refDate = new Date(referenceDateStr);
+  if (!referenceDateStr || isNaN(refDate.getTime())) {
+    refDate = new Date();
+  }
   const day = refDate.getDay();
   // Adjust so Monday is index 0, Sunday is index 6
   const diff = refDate.getDate() - day + (day === 0 ? -6 : 1);
@@ -57,14 +60,20 @@ export default function WeekView({ selectedDateStr, onSelectDate, tasks }: WeekV
 
   // Month-Year label for the header
   const currentMonthYearLabel = () => {
-    const currentRef = new Date(selectedDateStr);
+    let currentRef = new Date(selectedDateStr);
+    if (!selectedDateStr || isNaN(currentRef.getTime())) {
+      currentRef = new Date();
+    }
     const month = currentRef.getMonth() + 1;
     const year = currentRef.getFullYear();
     return `Tháng ${month}, ${year}`;
   };
 
   const navigateWeek = (weeksOffset: number) => {
-    const currentRef = new Date(selectedDateStr);
+    let currentRef = new Date(selectedDateStr);
+    if (!selectedDateStr || isNaN(currentRef.getTime())) {
+      currentRef = new Date();
+    }
     currentRef.setDate(currentRef.getDate() + weeksOffset * 7);
     onSelectDate(formatDateStr(currentRef));
   };

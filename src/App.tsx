@@ -100,10 +100,18 @@ const getInitialTasks = (): Task[] => {
   ];
 };
 
+const getTodayDateStr = (): string => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 export default function App() {
   // --- STATES ---
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [selectedDateStr, setSelectedDateStr] = useState<string>('');
+  const [selectedDateStr, setSelectedDateStr] = useState<string>(getTodayDateStr);
   
   // Real-time tracking
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -121,7 +129,7 @@ export default function App() {
   // --- INITIAL LOAD ---
   useEffect(() => {
     // Set selected date to today initially
-    setSelectedDateStr(formatDateStr(new Date()));
+    setSelectedDateStr(getTodayDateStr());
 
     // Load tasks from storage or seed
     const stored = localStorage.getItem(STORAGE_KEY);

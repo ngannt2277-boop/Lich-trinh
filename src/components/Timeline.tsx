@@ -18,6 +18,11 @@ interface TimelineProps {
   nowMinute: number;
 }
 
+const getTodayStr = (): string => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+
 const HOURS = Array.from({ length: 18 }, (_, i) => i + 6); // 6h to 23h
 
 export default function Timeline({
@@ -39,7 +44,7 @@ export default function Timeline({
   useEffect(() => {
     const updateMarkerPosition = () => {
       // Only show marker if viewing today
-      const todayStr = new Date().toISOString().split('T')[0];
+      const todayStr = getTodayStr();
       if (selectedDateStr !== todayStr) {
         setMarkerTop(null);
         return;
@@ -277,7 +282,7 @@ export default function Timeline({
     return a.createdAt - b.createdAt;
   });
 
-  const isToday = selectedDateStr === new Date().toISOString().split('T')[0];
+  const isToday = selectedDateStr === getTodayStr();
 
   return (
     <div className="relative flex flex-col flex-1" id="timeline-container">
