@@ -1,0 +1,8 @@
+{
+  "name": "Lịch Trình Cá Nhân",
+  "description": "Ứng dụng quản lý lịch trình cá nhân kết hợp giữa To-do list và Timeline dọc tự động cập nhật thời gian thực, hỗ trợ nhập liệu tự nhiên bằng tiếng Việt.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
