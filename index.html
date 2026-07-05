@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Safeguard against environment scripts attempting to redefine/set read-only window.fetch
+      try {
+        const originalFetch = window.fetch;
+        let customFetch = originalFetch;
+        Object.defineProperty(window, 'fetch', {
+          get() { return customFetch; },
+          set(value) { customFetch = value; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {
+        console.warn('Failed to define window.fetch getter/setter:', e);
+      }
+    </script>
+    <script type="module" crossorigin src="/Lich-trinh/assets/index-DALXEypd.js"></script>
+    <link rel="stylesheet" crossorigin href="/Lich-trinh/assets/index-CEQ6YRbx.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
